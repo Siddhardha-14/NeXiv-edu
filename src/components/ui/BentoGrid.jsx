@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
  */
 export function BentoGrid({ children, className = '' }) {
   return (
-    <div className={`grid w-full auto-rows-[22rem] grid-cols-1 md:grid-cols-3 gap-6 ${className}`}>
+    <div className={`grid w-full auto-rows-[23rem] grid-cols-1 md:grid-cols-3 gap-6 ${className}`}>
       {children}
     </div>
   );
@@ -32,34 +32,35 @@ export function BentoCard({
     <div
       className={`
         group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl
-        bg-[var(--bg-surface)] border border-[var(--border-default)] hover:border-[var(--accent-hover)]/30
-        transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[var(--accent-glow)]
+        bg-[var(--bg-surface)] border border-[var(--border-default)] hover:border-[var(--accent-hover)]
+        transition-all duration-500 ease-[var(--ease-spring)] shadow-lg hover:shadow-[0_16px_48px_0_rgba(0,0,0,0.6),0_0_20px_var(--accent-glow)]
+        backdrop-blur-[var(--glass-blur)]
         ${className}
       `}
     >
       {/* Background graphic layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-30 group-hover:opacity-50 transition-opacity duration-300 select-none overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40 group-hover:opacity-75 transition-all duration-500 select-none overflow-hidden scale-100 group-hover:scale-105">
         {background}
       </div>
 
       {/* Modern gradient overlay for content readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-surface)] via-[var(--bg-surface)]/70 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-root)] via-[var(--bg-root)]/60 to-transparent z-10 pointer-events-none" />
 
       {/* Optional Badge */}
       {badge && (
-        <div className="absolute top-4 right-4 z-20">
+        <div className="absolute top-5 right-5 z-20 transition-transform duration-300 group-hover:scale-105">
           {badge}
         </div>
       )}
 
       {/* Main Info Layer */}
-      <div className="pointer-events-none z-20 flex flex-col gap-1 p-6 mt-auto transition-transform duration-300 ease-out group-hover:-translate-y-2">
+      <div className="pointer-events-none z-20 flex flex-col gap-1 p-6 mt-auto transition-transform duration-500 ease-[var(--ease-spring)] group-hover:-translate-y-2">
         {Icon && (
-          <div className="p-2.5 bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl w-fit flex items-center justify-center text-[var(--accent)] group-hover:scale-95 group-hover:text-[var(--accent-hover)] transition-all duration-300 ease-in-out">
-            <Icon className="h-5 w-5" />
+          <div className="p-3 bg-[var(--bg-elevated)] border border-[var(--border-default)] rounded-2xl w-fit flex items-center justify-center text-[var(--accent)] group-hover:scale-110 group-hover:text-[var(--accent-hover)] group-hover:border-[var(--accent-muted)] transition-all duration-300">
+            <Icon className="h-5.5 w-5.5" />
           </div>
         )}
-        <h3 className="text-base font-bold text-[var(--text-primary)] mt-3 tracking-tight">
+        <h3 className="text-base font-bold text-[var(--text-primary)] mt-3.5 tracking-tight">
           {name}
         </h3>
         <p className="text-xs text-[var(--text-secondary)] line-clamp-2 max-w-[280px] leading-relaxed mt-1">
@@ -71,16 +72,16 @@ export function BentoCard({
       <div
         className={`
           pointer-events-auto z-20 flex items-center justify-between px-6 pb-6 pt-0
-          opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
-          transition-all duration-300 ease-out
+          opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0
+          transition-all duration-500 ease-[var(--ease-spring)]
         `}
       >
         <button
           onClick={onCtaClick}
-          className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--accent-hover)] hover:text-[var(--text-primary)] transition cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[var(--accent-hover)] hover:text-[var(--text-primary)] transition cursor-pointer"
         >
           {cta}
-          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
         </button>
       </div>
     </div>

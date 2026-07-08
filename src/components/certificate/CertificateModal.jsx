@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Award, X, Printer, Download, CircleCheckBig } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigation } from '../../context/NavigationContext';
+import Button from '../ui/Button';
 
 export default function CertificateModal() {
   const { user, courses } = useAuth();
@@ -20,12 +21,12 @@ export default function CertificateModal() {
       <div className="min-h-screen bg-[var(--bg-root)] flex flex-col items-center justify-center p-6 text-center">
         <Award className="w-12 h-12 text-[var(--accent)] mb-3" />
         <h2 className="text-lg font-bold text-[var(--text-primary)]">Certificate Not Found</h2>
-        <button
+        <Button
           onClick={() => navigate('student-dashboard')}
-          className="mt-4 px-4 py-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-bold uppercase rounded-xl transition"
+          className="mt-4"
         >
           Back to Dashboard
-        </button>
+        </Button>
       </div>
     );
   }
@@ -43,13 +44,13 @@ export default function CertificateModal() {
 
   return (
     <div className="min-h-screen bg-[var(--bg-root)] flex items-center justify-center p-4 sm:p-6 md:p-8 font-sans">
-      <div className="bg-[var(--bg-surface)] rounded-3xl shadow-xl max-w-3xl w-full border border-[var(--border-default)] overflow-hidden my-4 relative animate-fade-in no-print">
+      <div className="bg-[var(--bg-surface)] rounded-3xl shadow-2xl max-w-3xl w-full border border-[var(--border-default)] overflow-hidden my-4 relative animate-fade-in no-print backdrop-blur-xl">
         
         {/* Modal topbar */}
-        <div className="p-4 bg-[var(--bg-inset)] flex items-center justify-between border-b border-[var(--border-default)]">
+        <div className="p-4 bg-[var(--bg-elevated)]/40 flex items-center justify-between border-b border-[var(--border-default)]">
           <div className="flex items-center gap-2.5">
-            <Award className="w-5 h-5 text-[var(--accent)]" />
-            <span className="font-mono font-bold text-[10px] uppercase tracking-widest text-[var(--text-secondary)]">
+            <Award className="w-5 h-5 text-[var(--accent-hover)] animate-pulse" />
+            <span className="font-mono font-bold text-[9px] uppercase tracking-widest text-[var(--text-secondary)]">
               Digital Certificate
             </span>
           </div>
@@ -62,31 +63,32 @@ export default function CertificateModal() {
         </div>
 
         {/* Certificate Frame Section */}
-        <div className="p-6 md:p-10 bg-[var(--bg-root)]">
+        <div className="p-6 md:p-10 bg-[var(--bg-root)]/50">
           
-          {/* Print container layout */}
-          <div className="border-[10px] border-double border-[var(--accent)] p-6 md:p-10 text-center bg-[#FAF9F5] rounded-2xl relative overflow-hidden select-text text-zinc-950 shadow-sm print-cert-container">
-            <div className="absolute inset-0 bg-contain bg-center opacity-[0.02] bg-[url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=400')] pointer-events-none" />
+          {/* Print container layout (Academic Precision Style) */}
+          <div className="border-[8px] border-double border-[var(--accent)] p-6 md:p-10 text-center bg-[#fdfdfb] rounded-2xl relative overflow-hidden select-text text-zinc-900 shadow-sm print-cert-container">
+            {/* Watermark detail */}
+            <div className="absolute inset-0 bg-contain bg-center opacity-[0.015] bg-[url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=400')] pointer-events-none" />
             
-            <div className="relative z-10 flex flex-col items-center gap-5">
+            <div className="relative z-10 flex flex-col items-center gap-6">
               <div className="space-y-1">
-                <span className="text-[8px] font-mono tracking-[0.25em] uppercase font-bold text-zinc-400 block">
+                <span className="text-[8px] font-mono tracking-[0.3em] uppercase font-bold text-zinc-400 block">
                   Certificate of Achievement
                 </span>
-                <h1 className="text-lg md:text-xl font-bold tracking-tight font-sans uppercase text-zinc-900">
+                <h1 className="text-xl md:text-2xl font-extrabold tracking-tight font-sans uppercase text-zinc-900 leading-none">
                   NeXiv Institute of Technology
                 </h1>
-                <p className="text-[9px] font-serif italic text-zinc-400 leading-none">
+                <p className="text-[9px] font-serif italic text-zinc-400 mt-1">
                   Verified Online Learning Syllabus
                 </p>
               </div>
 
-              <div className="w-16 h-[1px] bg-zinc-300 my-1" />
-              <p className="text-[9px] font-serif uppercase tracking-widest text-zinc-400 font-bold leading-none">
+              <div className="w-20 h-[1px] bg-zinc-200 my-1" />
+              <p className="text-[8px] font-mono uppercase tracking-widest text-zinc-400 font-bold leading-none">
                 This certifies that
               </p>
               
-              <h2 className="text-xl md:text-3xl font-extrabold tracking-tight font-serif text-zinc-900 border-b border-zinc-300 pb-1.5 px-4 whitespace-nowrap">
+              <h2 className="text-xl md:text-3.5xl font-extrabold tracking-tight font-serif text-zinc-900 border-b-2 border-zinc-200 pb-2 px-5 whitespace-nowrap">
                 {user.name}
               </h2>
               
@@ -94,7 +96,7 @@ export default function CertificateModal() {
                 has successfully completed all requirements and demonstrated proficiency in
               </p>
               
-              <h3 className="text-sm md:text-base font-bold tracking-tight text-indigo-950 uppercase font-sans bg-indigo-50/70 border border-indigo-200/50 px-4 py-2 rounded-xl">
+              <h3 className="text-xs md:text-sm font-bold tracking-widest text-indigo-950 uppercase font-sans bg-indigo-50/70 border border-indigo-200/50 px-5 py-2.5 rounded-xl shadow-sm">
                 {course.title}
               </h3>
               
@@ -104,27 +106,27 @@ export default function CertificateModal() {
               </p>
 
               {/* Signatures */}
-              <div className="grid grid-cols-2 gap-8 w-full max-w-md mt-4 pt-4 border-t border-zinc-200/60 text-left text-zinc-400 text-[8px]">
+              <div className="grid grid-cols-2 gap-10 w-full max-w-md mt-4 pt-4 border-t border-zinc-200/60 text-left text-zinc-400 text-[8px]">
                 <div className="space-y-1">
-                  <div className="font-serif italic text-zinc-900 text-xs font-bold border-b border-zinc-300/80 pb-0.5">
+                  <div className="font-serif italic text-zinc-900 text-xs font-bold border-b border-zinc-200 pb-1">
                     Alex Rivera
                   </div>
                   <span className="block font-bold uppercase tracking-wider text-[7px]">Lead Instructor</span>
-                  <span className="block font-mono text-[7px] text-zinc-400">NeXiv Academic Board</span>
+                  <span className="block font-mono text-[7px] text-zinc-400 mt-0.5">NeXiv Academic Board</span>
                 </div>
                 <div className="space-y-1">
-                  <div className="font-serif font-bold text-zinc-900 text-xs border-b border-zinc-300/80 pb-0.5 font-mono leading-none py-[3px]">
+                  <div className="font-serif font-bold text-zinc-900 text-xs border-b border-zinc-200 pb-1 font-mono leading-none py-[3px]">
                     {date}
                   </div>
                   <span className="block font-bold uppercase tracking-wider text-[7px]">Verification Date</span>
-                  <span className="block font-sans text-emerald-600 font-bold text-[7px] flex items-center gap-0.5 leading-none">
+                  <span className="block font-sans text-emerald-600 font-bold text-[7px] flex items-center gap-0.5 leading-none mt-0.5">
                     <CircleCheckBig className="w-2.5 h-2.5 text-emerald-500 shrink-0" /> Verified Credential
                   </span>
                 </div>
               </div>
 
               {/* Verification Token */}
-              <div className="mt-4 text-center bg-zinc-100/80 border border-zinc-200/65 px-3 py-1 rounded select-all w-full max-w-xs">
+              <div className="mt-4 text-center bg-zinc-50 border border-zinc-150 px-4 py-1.5 rounded-lg select-all w-full max-w-xs shadow-sm">
                 <span className="text-[7px] font-mono tracking-widest font-bold text-zinc-400 block uppercase">
                   Certificate verification token:
                 </span>
@@ -138,8 +140,8 @@ export default function CertificateModal() {
         </div>
 
         {/* Action Panel Footer */}
-        <div className="p-4 bg-[var(--bg-inset)] border-t border-[var(--border-default)] flex items-center justify-between text-xs">
-          <span className="text-[10px] font-mono text-[var(--text-muted)]">
+        <div className="p-4 bg-[var(--bg-elevated)]/40 border-t border-[var(--border-default)] flex items-center justify-between text-xs">
+          <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[var(--text-muted)]">
             Secured via digital checksum validation.
           </span>
           <div className="flex items-center gap-2">

@@ -5,11 +5,11 @@ import { categoryColors } from '../../data/courses';
 
 const categoryHexColors = {
   'UI/UX Design': '#a78bfa',
-  'Data Analysis': '#34d399',
-  'Embedded Systems': '#fb923c',
-  'IoT Basics': '#22d3ee',
-  'Graphic Design': '#f472b6',
-  'AI Production': '#fbbf24',
+  'Data Analysis': '#10b981',
+  'Embedded Systems': '#f97316',
+  'IoT Basics': '#06b6d4',
+  'Graphic Design': '#ec4899',
+  'AI Production': '#f59e0b',
 };
 
 function getCategoryIcon(category) {
@@ -26,10 +26,12 @@ function getCategoryIcon(category) {
 
 export default function LearningPaths({ courses, onSelectCourse }) {
   return (
-    <section id="learning-paths" className="py-24 bg-[var(--bg-surface)]" aria-label="Learning Paths">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="learning-paths" className="py-16 sm:py-24 bg-[var(--bg-surface)]/20 border-t border-[var(--border-subtle)]" aria-label="Learning Paths">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="mb-14">
-          <span className="text-[var(--accent)] text-[10px] font-mono font-bold uppercase tracking-widest block mb-2">Learning Paths</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-hover)] to-[#06b6d4] text-[9px] font-mono font-bold uppercase tracking-widest block mb-2">
+            Learning Paths
+          </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--text-primary)] mb-3">
             Choose Your Specialization
           </h2>
@@ -41,29 +43,27 @@ export default function LearningPaths({ courses, onSelectCourse }) {
         <BentoGrid>
           {courses.map((course, index) => {
             const Icon = getCategoryIcon(course.category);
-            const colors = categoryColors[course.category];
-            const hex = categoryHexColors[course.category] || '#6366f1';
+            const hex = categoryHexColors[course.category] || '#7c3aed';
             
-            // Create an asymmetrical layout spanning 
-            // Item 1: col-span-2, Item 2: col-span-1, Item 3: col-span-1, Item 4: col-span-2, Item 5: col-span-1, Item 6: col-span-1
+            // Layout styling configuration
             const isWide = index === 0 || index === 3;
             const spanClass = isWide ? 'md:col-span-2' : 'md:col-span-1';
 
-            // Custom Background Graphic Overlay
+            // Custom Background Graphic Overlay (Aurora Glass highlights)
             const backgroundGraphic = (
               <div className="absolute inset-0 pointer-events-none">
-                {/* Grid Network */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] opacity-40" />
-                {/* Glowing Core */}
+                {/* Visual grid network */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] opacity-40" />
+                {/* Glow Core */}
                 <div 
-                  className="absolute inset-0 transition-all duration-300 group-hover:scale-105"
+                  className="absolute inset-0 transition-all duration-500 group-hover:scale-105"
                   style={{
-                    background: `radial-gradient(circle at 85% 15%, ${hex}18 0%, transparent 60%)`
+                    background: `radial-gradient(circle at 85% 15%, ${hex}20 0%, transparent 60%)`
                   }}
                 />
                 {/* Visual geometric accent */}
                 <div 
-                  className="absolute top-10 right-10 w-24 h-24 rounded-full filter blur-xl opacity-20 group-hover:opacity-30 transition-all duration-500"
+                  className="absolute top-8 right-8 w-24 h-24 rounded-full filter blur-2xl opacity-15 group-hover:opacity-25 transition-all duration-700"
                   style={{ backgroundColor: hex }}
                 />
               </div>
@@ -71,7 +71,7 @@ export default function LearningPaths({ courses, onSelectCourse }) {
 
             // Badge with metadata
             const courseBadge = (
-              <span className="text-[9px] font-mono font-bold tracking-wider uppercase bg-[var(--bg-elevated)] text-[var(--text-secondary)] border border-[var(--border-default)] px-2.5 py-1 rounded-full shadow-sm">
+              <span className="text-[8px] font-mono font-bold tracking-widest uppercase bg-[var(--bg-elevated)] text-[var(--text-secondary)] border border-[var(--border-default)] px-3 py-1.5 rounded-xl shadow-sm">
                 {course.difficulty}
               </span>
             );

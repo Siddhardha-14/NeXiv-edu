@@ -37,26 +37,31 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 'ma
       onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
     >
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm animate-fade-in" />
+      <div className="fixed inset-0 bg-black/75 backdrop-blur-md animate-fade-in" />
 
-      {/* Content */}
+      {/* Content Container (2026 Luminous Glass Dialog Box) */}
       <div
         ref={contentRef}
-        className={`relative ${maxWidth} w-full bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-2xl shadow-[var(--shadow-xl)] animate-fade-in my-8 overflow-hidden`}
+        className={`relative ${maxWidth} w-full bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-3xl shadow-[0_32px_64px_rgba(0,0,0,0.6),0_0_30px_rgba(124,58,237,0.15)] animate-fade-in my-8 overflow-hidden backdrop-blur-xl`}
       >
+        {/* Luminous Top Indicator Accent Bar */}
+        <div className="h-1 w-full bg-gradient-to-r from-[var(--accent)] to-[#22d3ee]" />
+
         {title && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-default)] bg-[var(--bg-elevated)]">
-            <h2 className="text-sm font-bold text-[var(--text-primary)] uppercase tracking-wide">{title}</h2>
+          <div className="flex items-center justify-between px-6 py-4.5 border-b border-[var(--border-default)] bg-[var(--bg-elevated)]/40">
+            <h2 className="text-[10px] font-mono font-bold text-[var(--text-primary)] uppercase tracking-widest">{title}</h2>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)] transition cursor-pointer"
+              className="p-1.5 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] transition duration-200 cursor-pointer"
               aria-label="Close dialog"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
         )}
-        {children}
+        <div className="p-6 md:p-8">
+          {children}
+        </div>
       </div>
     </div>
   );

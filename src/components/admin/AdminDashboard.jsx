@@ -122,7 +122,6 @@ export default function AdminDashboard() {
   ];
 
   const handleSidebarClick = () => {
-    // Scroll to top of table
     document.getElementById('approvals-table-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -135,7 +134,7 @@ export default function AdminDashboard() {
       onNavClick={handleSidebarClick}
       onLogout={() => { logout(); navigate('home'); }}
       bottomAction={
-        <Button size="sm" className="w-full" onClick={() => setShowCreateModal(true)} icon={Plus}>
+        <Button size="sm" className="w-full shadow-md" onClick={() => setShowCreateModal(true)} icon={Plus}>
           New Course
         </Button>
       }
@@ -161,50 +160,50 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
           
           {/* Card 1: Total Courses */}
-          <div className="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-default)] flex flex-col justify-between min-h-[140px] relative overflow-hidden group">
-            <div className="absolute inset-0 bg-radial-[circle_at_right_top,var(--accent)_0%,transparent_50%] opacity-[0.05] pointer-events-none" />
+          <div className="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-default)] flex flex-col justify-between min-h-[140px] relative overflow-hidden group shadow-lg backdrop-blur-xl transition duration-300 hover:border-[var(--accent-hover)]">
+            <div className="absolute inset-0 bg-radial-[circle_at_right_top,var(--accent)_0%,transparent_50%] opacity-[0.08] pointer-events-none" />
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold text-[var(--text-secondary)] uppercase tracking-wider">Total Tracks</span>
-              <BookOpen className="w-4 h-4 text-[var(--accent-hover)]" />
+              <span className="text-[9px] font-mono font-bold text-[var(--text-secondary)] uppercase tracking-widest">Total Tracks</span>
+              <BookOpen className="w-4.5 h-4.5 text-[var(--accent-hover)]" />
             </div>
             <div className="mt-4">
-              <div className="text-3xl font-bold font-mono text-[var(--text-primary)]">{courses.length}</div>
-              <p className="text-[10px] text-[var(--text-muted)] mt-1 font-mono">Active syllabus tracks published</p>
+              <div className="text-3xl font-extrabold font-mono text-[var(--text-primary)] leading-none">{courses.length}</div>
+              <p className="text-[9px] text-[var(--text-muted)] mt-1.5 font-mono uppercase tracking-wider">Active syllabus tracks published</p>
             </div>
           </div>
 
           {/* Card 2: Pending Approvals */}
-          <div className={`p-6 rounded-3xl bg-[var(--bg-surface)] border flex flex-col justify-between min-h-[140px] relative overflow-hidden group transition ${
-            pendingApprovalsCount > 0 ? 'border-amber-500/20' : 'border-[var(--border-default)]'
+          <div className={`p-6 rounded-3xl bg-[var(--bg-surface)] border flex flex-col justify-between min-h-[140px] relative overflow-hidden group shadow-lg backdrop-blur-xl transition duration-300 ${
+            pendingApprovalsCount > 0 ? 'border-amber-500/30' : 'border-[var(--border-default)] hover:border-[var(--accent-hover)]'
           }`}>
-            <div className="absolute inset-0 bg-radial-[circle_at_right_top,var(--warning)_0%,transparent_50%] opacity-[0.05] pointer-events-none" />
+            <div className="absolute inset-0 bg-radial-[circle_at_right_top,var(--warning)_0%,transparent_50%] opacity-[0.08] pointer-events-none" />
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold text-[var(--text-secondary)] uppercase tracking-wider">Pending Approvals</span>
-              <Award className={`w-4 h-4 ${pendingApprovalsCount > 0 ? 'text-amber-400 fill-amber-500/10' : 'text-[var(--text-muted)]'}`} />
+              <span className="text-[9px] font-mono font-bold text-[var(--text-secondary)] uppercase tracking-widest">Pending Approvals</span>
+              <Award className={`w-4.5 h-4.5 ${pendingApprovalsCount > 0 ? 'text-amber-400 fill-amber-500/10' : 'text-[var(--text-muted)]'}`} />
             </div>
             <div className="mt-4">
-              <div className="text-3xl font-bold font-mono text-[var(--text-primary)]">{pendingApprovalsCount}</div>
-              <p className="text-[10px] text-[var(--text-muted)] mt-1 font-mono">Requests awaiting evaluation</p>
+              <div className="text-3xl font-extrabold font-mono text-[var(--text-primary)] leading-none">{pendingApprovalsCount}</div>
+              <p className="text-[9px] text-[var(--text-muted)] mt-1.5 font-mono uppercase tracking-wider">Requests awaiting evaluation</p>
             </div>
           </div>
 
           {/* Card 3: Platform Level */}
-          <div className="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-default)] flex flex-col justify-between min-h-[140px] relative overflow-hidden group">
-            <div className="absolute inset-0 bg-radial-[circle_at_right_top,var(--success)_0%,transparent_50%] opacity-[0.05] pointer-events-none" />
+          <div className="p-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-default)] flex flex-col justify-between min-h-[140px] relative overflow-hidden group shadow-lg backdrop-blur-xl transition duration-300 hover:border-[var(--accent-hover)]">
+            <div className="absolute inset-0 bg-radial-[circle_at_right_top,var(--success)_0%,transparent_50%] opacity-[0.08] pointer-events-none" />
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold text-[var(--text-secondary)] uppercase tracking-wider">Operator Role</span>
-              <Shield className="w-4 h-4 text-emerald-400" />
+              <span className="text-[9px] font-mono font-bold text-[var(--text-secondary)] uppercase tracking-widest">Operator Role</span>
+              <Shield className="w-4.5 h-4.5 text-emerald-400" />
             </div>
             <div className="mt-4">
-              <div className="text-lg font-bold text-[var(--text-primary)] truncate uppercase tracking-tight">ROOT CONSOLE</div>
-              <p className="text-[10px] text-[var(--text-muted)] mt-1 font-mono">Full publishing & validation scopes</p>
+              <div className="text-base font-extrabold text-[var(--text-primary)] truncate uppercase tracking-widest font-mono">ROOT CONSOLE</div>
+              <p className="text-[9px] text-[var(--text-muted)] mt-1.5 font-mono uppercase tracking-wider">Full publishing & validation scopes</p>
             </div>
           </div>
 
         </div>
 
         {/* Approvals Table Section */}
-        <section id="approvals-table-section" className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-3xl p-6 shadow-md">
+        <section id="approvals-table-section" className="bg-[var(--bg-surface)]/60 border border-[var(--border-default)] rounded-3xl p-6 md:p-7 shadow-lg backdrop-blur-xl">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 pb-4 border-b border-[var(--border-subtle)]">
             <h3 className="text-sm font-bold text-[var(--text-primary)] tracking-tight">
               Certificate Approvals
@@ -219,13 +218,13 @@ export default function AdminDashboard() {
                   placeholder="Search student or course..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="bg-[var(--bg-inset)] border border-[var(--border-default)] rounded-xl pl-9 pr-4 py-1.5 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition w-48 sm:w-60"
+                  className="bg-[var(--bg-inset)] border border-[var(--border-default)] rounded-xl pl-9 pr-4 py-2 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition duration-300 w-48 sm:w-60"
                 />
               </div>
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="bg-[var(--bg-inset)] border border-[var(--border-default)] rounded-xl px-3 py-1.5 text-xs text-[var(--text-secondary)] focus:outline-none"
+                className="bg-[var(--bg-inset)] border border-[var(--border-default)] rounded-xl px-3 py-2 text-xs text-[var(--text-secondary)] focus:outline-none cursor-pointer hover:border-[var(--border-hover)] transition-colors duration-300"
               >
                 <option value="all">All Request Statuses</option>
                 <option value="pending">Pending Review</option>
@@ -236,50 +235,50 @@ export default function AdminDashboard() {
 
           {/* Table Log */}
           {filteredApprovals.length === 0 ? (
-            <div className="py-12 text-center text-xs text-[var(--text-muted)] font-mono">
+            <div className="py-12 text-center text-xs text-[var(--text-muted)] font-mono uppercase tracking-wider">
               No matching credentials found in the ledger.
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="border-b border-[var(--border-subtle)] text-[var(--text-muted)] font-mono text-[9px] uppercase tracking-wider">
-                    <th className="pb-3 font-bold">Student Detail</th>
-                    <th className="pb-3 font-bold">Syllabus Path</th>
-                    <th className="pb-3 font-bold">Verify Score</th>
-                    <th className="pb-3 font-bold">Submitted</th>
-                    <th className="pb-3 font-bold text-right">Actions</th>
+                  <tr className="border-b border-[var(--border-subtle)] text-[var(--text-muted)] font-mono text-[8px] uppercase tracking-widest">
+                    <th className="pb-3.5 font-bold">Student Detail</th>
+                    <th className="pb-3.5 font-bold">Syllabus Path</th>
+                    <th className="pb-3.5 font-bold">Verify Score</th>
+                    <th className="pb-3.5 font-bold">Submitted</th>
+                    <th className="pb-3.5 font-bold text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[var(--border-subtle)]">
                   {filteredApprovals.map(item => (
-                    <tr key={item.id} className="table-row-hover hover:bg-[var(--bg-inset)]/30 transition">
-                      <td className="py-4 pr-3">
+                    <tr key={item.id} className="table-row-hover hover:bg-[var(--bg-inset)]/30 transition duration-300">
+                      <td className="py-4.5 pr-3">
                         <div className="font-bold text-[var(--text-primary)]">{item.studentName}</div>
-                        <div className="text-[10px] text-[var(--text-muted)] font-mono">{item.studentEmail}</div>
+                        <div className="text-[9px] text-[var(--text-muted)] font-mono mt-0.5">{item.studentEmail}</div>
                       </td>
-                      <td className="py-4 pr-3 font-semibold text-[var(--text-secondary)]">
+                      <td className="py-4.5 pr-3 font-semibold text-[var(--text-secondary)]">
                         {item.courseTitle}
                       </td>
-                      <td className="py-4 pr-3 font-mono">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                          item.score >= 90 ? 'bg-emerald-500/10 text-emerald-400' : 'bg-[var(--accent-muted)] text-[var(--accent-hover)]'
+                      <td className="py-4.5 pr-3 font-mono">
+                        <span className={`px-2.5 py-1 rounded-lg text-[9px] font-bold ${
+                          item.score >= 90 ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-[var(--accent-muted)] text-[var(--accent-hover)] border border-[var(--accent)]/20'
                         }`}>
                           {item.score}%
                         </span>
                       </td>
-                      <td className="py-4 pr-3 text-[var(--text-muted)] font-mono">
+                      <td className="py-4.5 pr-3 text-[var(--text-muted)] font-mono">
                         {item.completionDate}
                       </td>
-                      <td className="py-4 text-right">
+                      <td className="py-4.5 text-right">
                         {item.status === 'approved' ? (
-                          <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/5 border border-emerald-500/10 px-2.5 py-1.5 rounded-full inline-flex items-center gap-1 leading-none select-none">
+                          <span className="text-[8px] font-mono text-emerald-400 font-bold bg-emerald-500/5 border border-emerald-500/20 px-3 py-1.5 rounded-xl inline-flex items-center gap-1 leading-none select-none uppercase tracking-widest">
                             <Check className="w-3.5 h-3.5" /> Certified
                           </span>
                         ) : (
                           <Button
                             size="sm"
-                            className="!py-1.5 !px-3 font-mono text-[9px]"
+                            className="!py-2 !px-3 font-mono text-[8px] tracking-wider"
                             onClick={() => approveCertificate(item.id)}
                           >
                             Approve
@@ -314,21 +313,20 @@ export default function AdminDashboard() {
                   required
                 />
                 <div>
-                  <label className="block text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5">
+                  <label className="block text-[9px] font-mono font-bold uppercase tracking-widest text-[var(--text-tertiary)] mb-2.5">
                     Category Tag
                   </label>
                   <Select
                     value={newCategory}
                     onChange={(e) => setNewCategory(e.target.value)}
-                    options={[
-                      { value: 'UI/UX Design', label: 'UI/UX Design' },
-                      { value: 'Data Analysis', label: 'Data Analysis' },
-                      { value: 'Embedded Systems', label: 'Embedded Systems' },
-                      { value: 'IoT Basics', label: 'IoT Basics' },
-                      { value: 'Graphic Design', label: 'Graphic Design' },
-                      { value: 'AI Production', label: 'AI Production' },
-                    ]}
-                  />
+                  >
+                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Data Analysis">Data Analysis</option>
+                    <option value="Embedded Systems">Embedded Systems</option>
+                    <option value="IoT Basics">IoT Basics</option>
+                    <option value="Graphic Design">Graphic Design</option>
+                    <option value="AI Production">AI Production</option>
+                  </Select>
                 </div>
               </div>
 
@@ -340,18 +338,17 @@ export default function AdminDashboard() {
                   onChange={(e) => setNewDuration(e.target.value)}
                 />
                 <div>
-                  <label className="block text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5">
+                  <label className="block text-[9px] font-mono font-bold uppercase tracking-widest text-[var(--text-tertiary)] mb-2.5">
                     Difficulty Scale
                   </label>
                   <Select
                     value={newDifficulty}
                     onChange={(e) => setNewDifficulty(e.target.value)}
-                    options={[
-                      { value: 'Beginner', label: 'Beginner' },
-                      { value: 'Intermediate', label: 'Intermediate' },
-                      { value: 'Advanced', label: 'Advanced' },
-                    ]}
-                  />
+                  >
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                  </Select>
                 </div>
               </div>
 
@@ -363,7 +360,7 @@ export default function AdminDashboard() {
               />
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+                <label className="text-[9px] font-mono font-bold uppercase tracking-widest text-[var(--text-tertiary)]">
                   Course Overview
                 </label>
                 <textarea
@@ -372,13 +369,13 @@ export default function AdminDashboard() {
                   onChange={(e) => setNewOverview(e.target.value)}
                   required
                   rows={3}
-                  className="w-full bg-[var(--bg-inset)] border border-[var(--border-default)] rounded-xl p-3 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition"
+                  className="w-full bg-[var(--bg-inset)] border border-[var(--border-default)] rounded-xl p-3.5 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent-muted)] transition duration-300 resize-none"
                 />
               </div>
 
               {/* Syllabus Lesson 1 Setup */}
               <div className="border-t border-[var(--border-subtle)] pt-5 space-y-4">
-                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--accent-hover)]">
+                <h4 className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--accent-hover)]">
                   Initial Syllabus Unit (Lesson 1)
                 </h4>
 
@@ -391,7 +388,7 @@ export default function AdminDashboard() {
                 />
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+                  <label className="text-[9px] font-mono font-bold uppercase tracking-widest text-[var(--text-tertiary)]">
                     Unit Markdown Body
                   </label>
                   <textarea
@@ -400,13 +397,13 @@ export default function AdminDashboard() {
                     onChange={(e) => setNewLessonContent(e.target.value)}
                     required
                     rows={4}
-                    className="w-full bg-[var(--bg-inset)] border border-[var(--border-default)] rounded-xl p-3 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition font-mono leading-relaxed"
+                    className="w-full bg-[var(--bg-inset)] border border-[var(--border-default)] rounded-xl p-3.5 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent-muted)] transition duration-300 font-mono leading-relaxed resize-y min-h-[100px]"
                   />
                 </div>
 
                 {/* Lesson 1 Quiz Setup */}
                 <div className="border-t border-[var(--border-subtle)]/50 pt-4 space-y-4">
-                  <h5 className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+                  <h5 className="text-[9px] font-mono font-bold uppercase tracking-widest text-[var(--text-secondary)]">
                     Unit Comprehension Question
                   </h5>
 
@@ -432,25 +429,24 @@ export default function AdminDashboard() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5">
+                    <label className="block text-[9px] font-mono font-bold uppercase tracking-widest text-[var(--text-tertiary)] mb-2.5">
                       Identify Correct Option Index
                     </label>
                     <Select
                       value={newQuizCorrect}
                       onChange={(e) => setNewQuizCorrect(e.target.value)}
-                      options={[
-                        { value: '0', label: 'Option 1' },
-                        { value: '1', label: 'Option 2' },
-                        { value: '2', label: 'Option 3' },
-                        { value: '3', label: 'Option 4' },
-                      ]}
-                    />
+                    >
+                      <option value="0">Option 1</option>
+                      <option value="1">Option 2</option>
+                      <option value="2">Option 3</option>
+                      <option value="3">Option 4</option>
+                    </Select>
                   </div>
                 </div>
               </div>
 
               {/* Submit Buttons */}
-              <div className="pt-4 border-t border-[var(--border-subtle)] flex justify-end gap-3">
+              <div className="pt-5 border-t border-[var(--border-subtle)] flex justify-end gap-3.5">
                 <Button
                   type="button"
                   variant="secondary"
